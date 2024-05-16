@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { toMoney } from '../utils';
-import { Box, Card, Typography, CardActions, CardContent, Button } from '@mui/material';
+import { Box, Card, Typography, CardActions, CardContent, Button, Grow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -101,7 +101,7 @@ function ProjetoRouanetCard({ project }) {
                     <Button size="large" fullWidth variant='contained' style={{ cursor: 'not-allowed' }} disabled>Adicionar</Button>
                     {
                         isFavoriteState ? 
-                            <FavoriteIcon sx={{ color: 'red', cursor: 'pointer' }} fontSize='large' onClick={() => setIsFavoriteState(false)} /> :
+                            <Grow in={isFavoriteState}><FavoriteIcon sx={{ color: 'red', cursor: 'pointer' }} fontSize='large' onClick={() => setIsFavoriteState(false)} /></Grow> :
                             <FavoriteBorderOutlinedIcon sx={{ cursor: 'pointer', stroke: '#fff' }} fontSize='large' color='text.secondary' onClick={() => setIsFavoriteState(true)} />
                     }
                 </CardActions>
