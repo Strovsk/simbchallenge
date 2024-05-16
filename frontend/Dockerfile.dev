@@ -1,0 +1,15 @@
+FROM node:21.7.3-alpine3.18
+
+WORKDIR /app
+
+# green color ascii variable
+ENV GREEN='\e[0;32m'
+
+RUN echo PS1="\"\[\e]0;dev@simbi-tech-case: \w\a\]\[\e[48;5;102m\e[38;5;255m\e[1m\] [frontend] \[\e[38;5;90m\e[48;5;255m\e[1m\] dev@front ⚛️ \[\e[0m\e[48;5;90m\e[38;5;255m\]  ( \w ) \[\e[0m\] >_ \"" >> ~/.bashrc
+
+COPY . .
+RUN npm install --force
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]

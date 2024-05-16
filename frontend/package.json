@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.15.17",
     "@mui/material": "^5.15.17",
     "@tippyjs/react": "^4.2.6",
+    "@mui/styles": "^5.15.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "swiper": "^11.1.3"

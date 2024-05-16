@@ -1,0 +1,53 @@
+name: simbi_tech_case
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ../backend
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - 7800:8000
+      - 9003:9003
+    # env_file:
+    #   - ../.env
+    depends_on:
+      - database
+    volumes:
+      - ../backend:/app
+      - simbi-tech-case-backend-volume-vendor:/app/vendor
+    networks:
+      - simbi_tech_case
+
+  database:
+    build:
+      context: ../backend
+      dockerfile: docker/Dockerfile.db.dev
+    container_name: database_dev
+    ports:
+      - 3303:3306
+    volumes:
+      - simbi-tech-case-backend-volume-database:/var/lib/mysql
+    networks:
+      - simbi_tech_case
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5173:5173
+    volumes:
+      - ../frontend/src:/app/src
+      - ../frontend/public:/app/public
+    networks:
+      - simbi_tech_case
+
+volumes:
+  simbi-tech-case-backend-volume-vendor:
+  simbi-tech-case-backend-volume-database:
+
+networks:
+  simbi_tech_case:
+    name: simbi_tech_case
+    driver: bridge
