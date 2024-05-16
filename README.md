@@ -66,6 +66,11 @@ Para rodar o projeto, siga os 5 passos abaixo:
 
 ```bash
     docker-compose up -d
+
+    # Se tudo ocorrer bem, você terá as seguintes aplicações rodando:
+    # - Frontend:           http://localhost:5173
+    # - Backend:            http://localhost:7800
+    # - Banco de dados:     http://localhost:3303
 ```
 
 <h2 id="project-structure">Estrutura do Projeto</h2>
@@ -90,11 +95,17 @@ O resultado final do desafio foi uma aplicação web que exibe os dados do dump 
 O frontend foi desenvolvido em React com Vite como bundler e Material-UI como biblioteca de componentes. A aplicação foi dividida em componentes para facilitar a manutenção e a escalabilidade.
 Devido à simplicidade do desafio, não foi necessário utilizar gerenciadores de estado como Redux ou Context API, nem mesmo uma camada de Pages ou soluções com React Router.
 
+[Abrir o frontend no navegador](http://localhost:5173)
+
 [Ver mais informações sobre o frontend...](./frontend/README.md)
 
 <h2 id="backend">Backend</h2>
 
 O backend foi desenvolvido em Laravel 9.x, utilizando o Eloquent ORM para a manipulação dos dados. A aplicação também foi dividida em camadas para facilitar a manutenção e a escalabilidade, neste caso, a arquitetura foi rápida e prática foi a MSC (Model-Service-Controller).
+
+[Abrir o backend no navegador](http://localhost:7800/api/projects)
+
+[Ver mais informações sobre o backend...](./backend/README.md)
 
 <h2 id="api-endpoints">API Endpoints</h2>
 
@@ -102,7 +113,7 @@ Há somente uma rota disponível na API, que é a rota de listagem de todos os r
 
 ```bash
 # GET /api/projects
-curl -X GET http://localhost:8000/api/projects
+curl -X GET http://localhost:7800/api/projects
 ```
 
 Se nenhum parâmetro for passado, a rota considerará o valor padrão da página como 1 e a quantidade de registros por página como 20.
