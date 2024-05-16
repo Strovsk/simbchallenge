@@ -102,11 +102,11 @@ function ProjetoRouanetCard({ project }) {
                 </CardContent>
 
                 <CardActions>
-                    <Button size="large" fullWidth variant='contained' disabled>Adicionar</Button>
+                    <Button size="large" fullWidth variant='contained' style={{ cursor: 'not-allowed' }} disabled>Adicionar</Button>
                     {
                         isFavoriteState ? 
-                            <FavoriteIcon style={{ color: 'red', cursor: 'pointer' }} onClick={() => setIsFavoriteState(false)} /> :
-                            <FavoriteBorderOutlinedIcon style={{ cursor: 'pointer' }} color='text.secondary' onClick={() => setIsFavoriteState(true)} />
+                            <FavoriteIcon sx={{ color: 'red', cursor: 'pointer' }} fontSize='large' onClick={() => setIsFavoriteState(false)} /> :
+                            <FavoriteBorderOutlinedIcon sx={{ cursor: 'pointer', stroke: '#fff' }} fontSize='large' color='text.secondary' onClick={() => setIsFavoriteState(true)} />
                     }
                 </CardActions>
             </Card>
