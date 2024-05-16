@@ -1,0 +1,61 @@
+name: generic_app_laravel_react
+services:
+  app:
+    container_name: app
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - 7800:8000
+      - 9003:9003
+    # env_file:
+    #   - ../.env
+    depends_on:
+      - database
+    volumes:
+      - ..:/app
+      - generic-application-vendor:/app/vendor
+    networks:
+      - generic_app
+
+  database:
+    build:
+        context: ..
+        dockerfile: docker/Dockerfile.db.dev
+    container_name: database_dev
+    ports:
+      - 3303:3306
+    # environment:
+    #   - MYSQL_DATABASE=generic_app
+    #   - MYSQL_USER=generic_app_dev
+    #   - MYSQL_PASSWORD=generic_app_dev_pass
+    #   - MYSQL_ROOT_PASSWORD=generic_app_dba_admin
+    volumes:
+      - generic-application-database:/var/lib/mysql
+    networks:
+      - generic_app
+
+#   mailpit:
+#     image: axllent/mailpit
+#     container_name: mailpit
+#     volumes:
+#       - ../storage/mail:/data
+#     ports:
+#       - 8025:8025
+#       - 1025:1025
+#     environment:
+#       - MP_MAX_MESSAGES=5000
+#       - MP_DATA_FILE=/data/mailpit.db
+#       - MP_SMTP_AUTH_ACCEPT_ANY=1
+#       - MP_SMTP_AUTH_ALLOW_INSECURE=1
+#     networks:
+#       - generic_app
+
+volumes:
+  generic-application-vendor:
+  generic-application-database:
+
+networks:
+  generic_app:
+    name: generic_app
+    driver: bridge

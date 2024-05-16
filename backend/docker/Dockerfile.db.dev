@@ -1,0 +1,11 @@
+FROM mysql:latest
+
+ENV MYSQL_DATABASE=generic_app
+ENV MYSQL_USER=generic_app_dev
+ENV MYSQL_PASSWORD=generic_app_dev_pass
+ENV MYSQL_ROOT_PASSWORD=generic_app_dba_admin
+
+COPY ./database/dump/database_dump.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 3306
+EXPOSE 3303

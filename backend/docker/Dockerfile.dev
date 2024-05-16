@@ -1,0 +1,71 @@
+FROM node:20-alpine3.18 as node
+# FROM node:20-bullseye as node
+FROM composer:2.4.1
+
+COPY --from=node /usr/local/lib/node_modules/ /usr/local/lib/node_modules/
+COPY --from=node /opt/ /opt/
+COPY --from=node /usr/local/bin/node /usr/local/bin
+
+# lrwxrwxrwx 1 root root        45 May  2 12:32 corepack -> ../lib/node_modules/corepack/dist/corepack.js
+# -rwxrwxr-x 1 root root       388 May 14 06:02 docker-entrypoint.sh
+# -rwxr-xr-x 1 root root 111408664 May  2 12:32 node
+# lrwxrwxrwx 1 root root        19 May 14 06:02 nodejs -> /usr/local/bin/node
+# lrwxrwxrwx 1 root root        38 May  2 12:32 npm -> ../lib/node_modules/npm/bin/npm-cli.js
+# lrwxrwxrwx 1 root root        38 May  2 12:32 npx -> ../lib/node_modules/npm/bin/npx-cli.js
+# lrwxrwxrwx 1 root root        27 May 14 06:02 yarn -> /opt/yarn-v1.22.19/bin/yarn
+# lrwxrwxrwx 1 root root        30 May 14 06:02 yarnpkg -> /opt/yarn-v1.22.19/bin/yarnpkg
+
+RUN ln -s /usr/local/lib/node_modules/corepack/dist/corepack.js /usr/local/bin/corepack
+RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+RUN ln -s /opt/yarn-v1.22.19/bin/yarn /usr/local/bin/yarn
+RUN ln -s /opt/yarn-v1.22.19/bin/yarnpkg /usr/local/bin/yarnpkg
+
+
+WORKDIR /app
+COPY . .
+
+ENV DB_CONNECTION=mysql
+ENV DB_HOST=database
+ENV DB_PORT=3306
+ENV DB_DATABASE=generic_app
+ENV DB_USERNAME=root
+ENV DB_PASSWORD=generic_app_dba_admin
+
+RUN composer update
+RUN composer install
+RUN docker-php-ext-install pdo_mysql
+# RUN cp .env.example .env
+# RUN php artisan key:generate
+RUN chmod +x docker/DockerBootstrap.php
+RUN chmod +x artisan
+
+RUN echo PS1="\"\[\e]0;dev@generic_app: \w\a\]\[\e[48;5;102m\e[38;5;255m\e[1m\] [generic_app] \[\e[38;5;90m\e[48;5;255m\e[1m\] dev@generic_app 👻 \[\e[0m\e[48;5;90m\e[38;5;255m\]  ( \w ) \[\e[0m\] >_ \"" >> ~/.bashrc
+
+RUN composer run post-create-project-cmd
+
+EXPOSE 8000
+
+# Add xdebug
+RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
+RUN apk add --update linux-headers
+RUN pecl install xdebug-3.1.5
+RUN docker-php-ext-enable xdebug
+RUN apk del -f .build-deps
+
+EXPOSE 9003
+
+# Configure Xdebug
+
+RUN mkdir -p /app/xdebug
+RUN touch /app/storage/logs/xdebug.log
+
+RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.log=/app/storage/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.discover_client_host=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.client_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+# CMD [ "tail", "-f", "/dev/null" ]
+CMD [ "php", "docker/DockerBootstrap.php" ]
