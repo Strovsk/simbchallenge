@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { toMoney } from '../utils';
 import { Box, Card } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
@@ -8,19 +9,23 @@ import Button from '@mui/material/Button';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import React, { useState, useEffect } from 'react';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 
-const tag = (
+const rouanetTag = (
     <React.Fragment>
         <Typography
             sx={{
-                fontSize: 14,
                 background: '#fff2db',
                 color: '#cba16f',
                 fontWeight: 'bold',
-                padding: 1,
+                paddingInline: 2,
+                display: 'inline-block',
             }}
-            align='left'
+            variant='caption'
+            borderRadius={1}
+            align='center'
             gutterBottom
         >
             ROUANET
@@ -28,8 +33,36 @@ const tag = (
     </React.Fragment>
 );
 
-export default function ProjetoRouanetCard({ project }) {
+const useStyles = makeStyles({
+    ellipsisShortDescription: {
+        maxWidth: '100%',
+        overflow: 'hidden',
+        display: '-webkit-box',
+        lineClamp: 3,
+    },
+
+    titleShortDescription: {
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+    },
+
+    currencyStyle: {
+        fontWeight: 'bold',
+    },
+
+    boxRowView: {
+        display: 'flex',
+        flexWrap: 'no-wrap',
+        justifyContent: 'space-between',
+        width: '75%',
+    }
+});
+
+function ProjetoRouanetCard({ project }) {
     const [isFavoriteState, setIsFavoriteState] = useState(false);
+
+    const classes = useStyles();
 
     const valueInvested = toMoney(project.valor_captado);
     const valueApproved = toMoney(project.valor_aprovado);
@@ -37,42 +70,41 @@ export default function ProjetoRouanetCard({ project }) {
     const projectCity = project.municipio;
     const projectState = project.uf;
     const projectSummary = project.resumo;
-
+    
     useEffect(() => {
         document.title = 'Simbi - Projetos Rouanet';
       }, []);
 
     return (
-        <Box sx={{ minWidth: 275, maxHeight: 400 }}>
-            <Card variant="outlined">
+        <Box sx={{ width: 290, boxShadow: 0 }}>
+            <Card variant='elevation'>
 
                 <CardContent>
-                    {tag}
-                    <Typography variant="h6" component="div" align='left'>
-                        {projectTitle}
-                    </Typography>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" align='left' gutterBottom>
-                        {projectCity} · {projectState}
-                    </Typography>
-                    <Typography noWrap sx={{ fontSize: 14 }} color="text.secondary" align='left' gutterBottom>
-                        {projectSummary}
-                    </Typography>
-                    <div style={{ display: 'flex' }}>
-                        <Typography variant="body2" color="text.secondary" align='left' gutterBottom>Aprovado</Typography>
-                        <Typography variant="body2" color="text.secondary" align='left' gutterBottom>{valueApproved}</Typography>
-                    </div>
-                    <div style={{ display: 'flex' }}>
-                        <Typography variant="body2" color="text.secondary" align='left' gutterBottom>Captado</Typography>
-                        <Typography variant="body2" color="text.secondary" align='left' gutterBottom>{valueInvested}</Typography>
-                    </div>
+                    {rouanetTag}
+
+                    <Tippy content={projectTitle} placement='top'>
+                        <Typography align='left' component="div" id={project.id_projeto} className={classes.titleShortDescription} gutterBottom>{projectTitle}</Typography>
+                    </Tippy>
+                        
+                    <Typography variant='body2' align='left' color='text.secondary' gutterBottom>{projectCity} · {projectState}</Typography>
+                    <Typography variant='caption' align='left' color="text.secondary" paragraph className={classes.ellipsisShortDescription} height={100} gutterBottom>{projectSummary}</Typography>
+
+                    <Box component='div' className={ classes.boxRowView }>
+                        <Typography align='left' gutterBottom>Aprovado</Typography>
+                        <Typography align='left' gutterBottom className={classes.currencyStyle}>{valueApproved}</Typography>
+                    </Box>
+                    <Box component='div' className={ classes.boxRowView }>
+                        <Typography align='left' gutterBottom>Captado</Typography>
+                        <Typography align='left' gutterBottom className={classes.currencyStyle}>{valueInvested}</Typography>
+                    </Box>
                 </CardContent>
 
                 <CardActions>
-                    <Button size="medium" fullWidth variant='contained'>Adicionar</Button>
+                    <Button size="large" fullWidth variant='contained' disabled>Adicionar</Button>
                     {
                         isFavoriteState ? 
-                            <FavoriteIcon onClick={() => setIsFavoriteState(false)} /> :
-                            <FavoriteBorderOutlinedIcon onClick={() => setIsFavoriteState(true)} />
+                            <FavoriteIcon style={{ color: 'red' }} onClick={() => setIsFavoriteState(false)} /> :
+                            <FavoriteBorderOutlinedIcon color='text.secondary' onClick={() => setIsFavoriteState(true)} />
                     }
                 </CardActions>
             </Card>
@@ -82,6 +114,7 @@ export default function ProjetoRouanetCard({ project }) {
 
 ProjetoRouanetCard.propTypes = {
     project: PropTypes.shape({
+        id_projeto: PropTypes.number.isRequired,
         nome: PropTypes.string.isRequired,
         resumo: PropTypes.string.isRequired,
         municipio: PropTypes.string.isRequired,
@@ -90,3 +123,5 @@ ProjetoRouanetCard.propTypes = {
         valor_captado: PropTypes.string.isRequired,
     }).isRequired,
 };
+
+export default ProjetoRouanetCard;
