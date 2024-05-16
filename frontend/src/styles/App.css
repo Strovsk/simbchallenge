@@ -82,3 +82,23 @@
   /* color: #ccc; */
   opacity: 0;
 }
+
+/* move pagination below of the cards */
+.swiper-pagination {
+  bottom: 0;
+  display: block;
+  position: initial;
+  margin-top: 1em;
+}
+
+/* change color of bullets on pagination */
+.swiper-pagination-bullet {
+  background: transparent;
+  border: 2px solid #cbd1d8;
+  width: 10px;
+  height: 10px;
+}
+
+.swiper-pagination-bullet-active {
+  background: #cbd1d8;
+}
