@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 
 import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material';
 
 import ProjetoRouanetCard from './components/ProjetoRouanetCard';
 import bacgkround from './assets/background.svg';
@@ -12,6 +13,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+
+import './styles/App.css';
+import './styles/typography.css';
 
 function App() {
   const [projects, setProjetos] = useState([]);
