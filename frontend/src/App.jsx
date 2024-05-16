@@ -1,21 +1,13 @@
 import { useState, useEffect } from 'react';
 import { projetosRouanet } from './services/projetosRouanet';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 
-import ProjetoRouanetCard from './components/ProjetoRouanetCard';
+import ProjetoRouanetSlider from './components/ProjetRouanetSlider';
 import bacgkround from './assets/background.svg';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 import './styles/App.css';
-import './styles/typography.css';
 
 function App() {
   const [projects, setProjetos] = useState([]);
@@ -48,24 +40,13 @@ function App() {
 
       <section style={{ height: '100vh', display: 'grid', placeItems: 'center' }}>
         <div style={{ background: '#fff', padding: 40, borderRadius: 10 }}>
+
           <Typography variant="h5" component="div" align='left' color="#459ca8" gutterBottom>
               Ver outros projetos do propoente
           </Typography>
-          <div style={{ width: (290 + 25) * 3, height: 500 }}>
-            <Swiper
-              modules={[ Navigation, Pagination ]}
-              spaceBetween={25}
-              slidesPerView={3}
-              navigation
-              pagination={{ clickable: true }}
-            >
-                {projects.map(project => (
-                  <SwiperSlide key={project.id_projeto}>
-                    <ProjetoRouanetCard project={project} />
-                  </SwiperSlide>
-                ))}
-            </Swiper>
-          </div>
+
+          <ProjetoRouanetSlider projects={projects} />
+
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button>+ VER TODOS</Button>
           </div>
