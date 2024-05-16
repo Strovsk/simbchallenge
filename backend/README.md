@@ -1,37 +1,46 @@
-# Simbi Test Case
+![](https://img.shields.io/badge/Laravel%209.x-%23FF2D20?style=for-the-badge&logo=laravel&logoColor=%23EEE)
+![](https://img.shields.io/badge/PHP%208.1.10-%23777BB4?style=for-the-badge&logo=php&logoColor=%23EEE)
 
+# Simbi Tech Case - Backend
 
-## Getting Started
+<p style="text-align: center;">
+    <img src="../frontend/src/assets/background.svg" alt="Simbi Logo" />
+</p>
 
-1. Clone the repository
-1. Run it using docker
-1. Enjoy it 🚀
+## Sumário
 
-## Docker 🐋
+-   [Migrações](#migrations)
+-   [MSC - Model -> Service -> Controller](#msc)
+-   [Docker](#docker)
+-   [Api Simbi](#api-simbi)
 
-Ensure that you have Docker Desktop installed on your machine.
+<h2 id="migrations">Migrações</h2>
 
-> To follow the steps below ensure that you are in the root directory of the project.
+O sistema de "migrations" utilizado é o do Laravel. Você não precisa se preocupar em rodar comandos como `php artisan migrate`, pois o sistema já faz isso automaticamente através do script de entrypoint do container de desenvolvimento e as executará sempre. (Verifique o arquivo `backend/docker/DockerBootstrap.php`)
 
-1. Enter the docker folder `cd docker`
-2. Build the images and create the containers `docker-compose up -d`
-    This command will build the images: `app` and `db` and create it's containers.
+<h2 id="msc">MSC - Model -> Service -> Controller</h2>
 
-The `app` container will run the application and the `db` container will run the database. The first one will be available at `http://localhost:7800` and the second one at `http://localhost:3303` to avoid local problems.
+O sistema de arquitetura utilizado é o MSC, que é uma variação do MVC. A diferença é que o Service é responsável por toda a lógica de negócio, enquanto o Controller é responsável por receber as requisições e enviar as respostas. O Model é responsável por representar a entidade no banco de dados. É ideal para nano/micro serviços e aplicações com pouca complexidade.
 
-## Enter the app container
+<h2 id="docker">Docker</h2>
 
-To enter the app container you can run the following command:
+O ambiente de desenvolvimento é todo feito em Docker. Todo o tutorial está no [README.md](../README.md) da raiz do projeto. Esta seção existe, pois, a linha de comando do laravel (artisan) precisa ser ativamente executada durante o desenvolvimento. Então, se você quiser entrar no container para acessar a linha de comando, execute o seguinte:
 
 ```bash
-docker exec -it app bash
+docker exec -it backend bash
 
 # if it works you will see the following message
 [app] dev@app 👻 ( /app )
 ```
 
-## Simbi API
+<h2 id="api-simbi">Api Simbi</h2>
 
-The API has the following endpoints:
-  - **[GET]** /api/health
-  - **[GET]** /api/projetos-rouanet
+A API Simbi é uma API RESTful que fornece informações sobre projetos culturais aprovados pela Lei Rouanet. Ela é composta por dois endpoints:
+
+-   **[GET]** /api/health
+
+    simplesmente para verificar se a API está funcionando (normalmente utilizado para verificar comunição com gateways e dispositivos externos dos quais a API depende)
+
+-   **[GET]** /api/projetos-rouanet
+
+    O endpoint que foi solicitado no CASE
