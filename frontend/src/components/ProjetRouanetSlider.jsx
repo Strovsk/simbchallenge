@@ -9,7 +9,7 @@ import 'swiper/css/scrollbar';
 
 import ProjetoRouanetCard from './ProjetoRouanetCard';
 
-function ProjetoRouanetSlider(projects) {
+function ProjetoRouanetSlider({ projects }) {
   const slideSize = 290;
   const slideGap = 25;
   const numberOfSlidesPerView = 3;
