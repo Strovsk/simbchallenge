@@ -90,6 +90,8 @@ O resultado final do desafio foi uma aplicação web que exibe os dados do dump 
 O frontend foi desenvolvido em React com Vite como bundler e Material-UI como biblioteca de componentes. A aplicação foi dividida em componentes para facilitar a manutenção e a escalabilidade.
 Devido à simplicidade do desafio, não foi necessário utilizar gerenciadores de estado como Redux ou Context API, nem mesmo uma camada de Pages ou soluções com React Router.
 
+[Ver mais informações sobre o frontend...](./frontend/README.md)
+
 <h2 id="backend">Backend</h2>
 
 O backend foi desenvolvido em Laravel 9.x, utilizando o Eloquent ORM para a manipulação dos dados. A aplicação também foi dividida em camadas para facilitar a manutenção e a escalabilidade, neste caso, a arquitetura foi rápida e prática foi a MSC (Model-Service-Controller).
