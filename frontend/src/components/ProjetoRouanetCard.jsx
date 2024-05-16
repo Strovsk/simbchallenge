@@ -15,21 +15,23 @@ import 'tippy.js/dist/tippy.css';
 
 const rouanetTag = (
     <React.Fragment>
-        <Typography
-            sx={{
-                background: '#fff2db',
-                color: '#cba16f',
-                fontWeight: 'bold',
-                paddingInline: 2,
-                display: 'inline-block',
-            }}
-            variant='caption'
-            borderRadius={1}
-            align='center'
-            gutterBottom
-        >
-            ROUANET
-        </Typography>
+        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Typography
+                sx={{
+                    background: '#fff2db',
+                    color: '#cba16f',
+                    fontWeight: 'bold',
+                    paddingInline: 2,
+                    display: 'inline-block',
+                }}
+                variant='caption'
+                borderRadius={1}
+                align='center'
+                gutterBottom
+            >
+                ROUANET
+            </Typography>
+        </div>
     </React.Fragment>
 );
 
