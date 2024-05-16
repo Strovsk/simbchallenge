@@ -1,11 +1,7 @@
 import PropTypes from 'prop-types';
 import { toMoney } from '../utils';
-import { Box, Card } from '@mui/material';
+import { Box, Card, Typography, CardActions, CardContent, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import React, { useState, useEffect } from 'react';
