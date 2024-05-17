@@ -61,10 +61,11 @@ Para rodar o projeto, siga os 4 passos abaixo:
     docker-compose up -d
 ```
 
-    Se tudo ocorrer bem, você terá as seguintes aplicações rodando:
-    - Frontend:           http://localhost:5173
-    - Backend:            http://localhost:7800
-    - Banco de dados:     http://localhost:3303
+> Se tudo ocorrer bem, você terá as seguintes aplicações rodando:
+>
+> - Frontend: http://localhost:5173
+> - Backend: http://localhost:7800
+> - Banco de dados: http://localhost:3303
 
 <h2 id="project-structure">Estrutura do Projeto</h2>
 
