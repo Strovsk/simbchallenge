@@ -21,6 +21,7 @@ class ProjetoRouanetController extends Controller
             'page' => $page,
             'limit' => 20,
             'offset' => ($page - 1) * 20,
+            'number_of_pages' => $query_result['number_of_pages'],
             'message' => $query_result['message'],
             'data' => $query_result['data'],
         ]);
