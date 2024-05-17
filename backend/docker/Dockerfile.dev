@@ -25,6 +25,7 @@ RUN ln -s /opt/yarn-v1.22.19/bin/yarnpkg /usr/local/bin/yarnpkg
 
 WORKDIR /app
 COPY . .
+COPY .env.example .env
 
 ENV DB_CONNECTION=mysql
 ENV DB_HOST=database
