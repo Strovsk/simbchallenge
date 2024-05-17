@@ -14,7 +14,7 @@ while(1) {
         system("clear");
         echo "Connected successfully\n\n";
 
-        if (!file_exists(".env")) system("cp .env.development .env");
+        if (!file_exists(".env")) system("cp .env.example .env");
         if (file_exists(".env")) system("php /app/artisan key:generate");
 
         system("php /app/artisan migrate");
