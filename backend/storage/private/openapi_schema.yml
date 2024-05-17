@@ -1,0 +1,139 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: API de Projetos Rouanet
+  description: Documentação da API de Projetos Rouanet
+basePath: /api
+paths:
+  /projetos-rouanet:
+    get:
+      summary: Recupera todos os projetos Rouanet
+      description: Recupera todos os projetos Rouanet paginados
+      parameters:
+        - name: page
+          in: query
+          description: Número da página
+          required: false
+          type: integer
+          default: 1
+      responses:
+        '200':
+          description: Sucesso
+          schema:
+            type: object
+            properties:
+              page:
+                type: integer
+              limit:
+                type: integer
+              offset:
+                type: integer
+              number_of_pages:
+                type: integer
+              message:
+                type: string
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/ProjetoRouanet'
+
+        '404':
+          description: Página não encontrada
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Erro interno do servidor
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  Error:
+    type: object
+    properties:
+      page:
+        type: integer
+      limit:
+        type: integer
+      offset:
+        type: integer
+      number_of_pages:
+        type: integer
+      message:
+        type: string
+      data:
+        type: array
+        items:
+          maxItems: 0
+
+  ProjetoRouanet:
+    properties:
+      id_projeto:
+        type: integer
+      pronac:
+        type: string
+      ano_projeto:
+        type: integer
+      nome:
+        type: string
+      segmento:
+        type: string
+      area:
+        type: string
+      uf:
+        type: string
+      municipio:
+        type: string
+      data_inicio:
+        type: string
+      data_termino:
+        type: string
+      situacao:
+        type: string
+      mecanismo:
+        type: string
+      enquadramento:
+        type: string
+      valor_captado:
+        type: string
+      valor_aprovado:
+        type: string
+      acessibilidade:
+        type: string
+      objetivos:
+        type: string
+      justificativa:
+        type: string
+      etapa:
+        type: string
+      ficha_tecnica:
+        type: string
+      impacto_ambiental:
+        type: string
+      especificacao_tecnica:
+        type: string
+      providencia:
+        type: string
+      democratizacao:
+        type: string
+      sinopse:
+        type: string
+      resumo:
+        type: string
+      created_at:
+        type: string
+      updated_at:
+        type: string
+      valor_projeto:
+        type: string
+      outras_fontes:
+        type: string
+      valor_proposta:
+        type: string
+      valor_solicitado:
+        type: string
+      objetivo:
+        type: string
+      estrategia_execucao:
+        type: string
+      link_incentivadores:
+        type: string

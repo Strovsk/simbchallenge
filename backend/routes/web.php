@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
+use Symfony\Component\Yaml\Yaml;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/docs', function () {
+    return view('docs');
+})->name('docs');
+
+Route::get('/api.json', function () {
+    $yaml_location = storage_path('private/openapi_schema.yml');
+    $yaml_content = file_get_contents($yaml_location);
+    $parsed_file = Yaml::parse($yaml_content);
+    return response()->json($parsed_file);
+})->name('api_json');
