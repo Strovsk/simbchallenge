@@ -12,7 +12,7 @@
 -   [Migrações](#migrations)
 -   [MSC - Model -> Service -> Controller](#msc)
 -   [Docker](#docker)
--   [Api Simbi](#api-simbi)
+-   [Api Simbi](#api-simbi) < Atenção aqui 😁 (Swagger)
 -   [Testes](#tests)
 
 <h2 id="migrations">Migrações</h2>
@@ -48,6 +48,11 @@ A API Simbi é uma API RESTful que fornece informações sobre projetos culturai
 -   **[GET]** /api/projetos-rouanet
 
     O endpoint que foi solicitado no CASE
+
+### Swagger
+
+O arquivo de documentação do Swagger está armazenado em `backend/storage/private/openapi_schema.yaml`.
+Para acessar a documentação da API, acesse o seguinte link: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 <h2 id="tests">Testes</h2>
 
