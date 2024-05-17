@@ -1,9 +1,9 @@
 ![](https://img.shields.io/badge/Laravel%209.x-%23FF2D20?style=for-the-badge&logo=laravel&logoColor=%23EEE)
 ![](https://img.shields.io/badge/PHP%208.1.10-%23777BB4?style=for-the-badge&logo=php&logoColor=%23EEE)
-![](https://img.shields.io/badge/React-%23fff?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![](https://img.shields.io/badge/React-%23eee?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![](https://img.shields.io/badge/Vite-%23007ACC?style=for-the-badge&logo=vite&logoColor=%23EEE)
 ![](https://img.shields.io/badge/Docker-%232496ED?style=for-the-badge&logo=docker&logoColor=%23EEE)
-![](https://img.shields.io/badge/@MUI%20Components-%23fff?style=for-the-badge&logo=material-ui&logoColor=%23EEE)
+![](https://img.shields.io/badge/@MUI%20Components-%23eee?style=for-the-badge&logo=material-ui&logoColor=%23EEE)
 ![](https://img.shields.io/badge/Tippy.js-%23FFCA28?style=for-the-badge&logo=tippy.js&logoColor=%23EEE)
 ![](https://img.shields.io/badge/Swiper.js-%23000000?style=for-the-badge&logo=swiper&logoColor=%23EEE)
 
