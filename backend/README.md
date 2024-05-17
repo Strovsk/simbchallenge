@@ -29,8 +29,11 @@ O ambiente de desenvolvimento é todo feito em Docker. Todo o tutorial está no 
 ```bash
 docker exec -it backend bash
 
-# if it works you will see the following message
-[app] dev@app 👻 ( /app )
+# Se tudo funcionou corretamente, você verá algo parecido com isso:
+[simbi-tech-case]  dev@back 🐇  ( /app ) >_
+
+# caso esteja acessando através da EXEC do docker Desktop, digite:
+bash
 ```
 
 <h2 id="api-simbi">Api Simbi</h2>
