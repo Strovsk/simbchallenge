@@ -41,7 +41,11 @@ const useStyles = makeStyles({
     maxWidth: '100%',
     overflow: 'hidden',
     display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 3,
     lineClamp: 3,
+    maxHeight: '4.5em',
+    textOverflow: 'ellipsis',
   },
 
   titleShortDescription: {
@@ -52,13 +56,18 @@ const useStyles = makeStyles({
 
   currencyStyle: {
     fontWeight: 'bold',
+    justifySelf: 'flex-start',
+  },
+
+  boxRowViewLabel: {
+    flex: '0 0 50px',
   },
 
   boxRowView: {
     display: 'flex',
     flexWrap: 'no-wrap',
     justifyContent: 'space-between',
-    width: '75%',
+    width: '90%',
   },
 });
 
@@ -86,6 +95,7 @@ function ProjetoRouanetCard({ project }) {
             <Typography
               align="left"
               component="div"
+              variant="subtitle2"
               id={project.id_projeto}
               className={classes.titleShortDescription}
               gutterBottom
@@ -95,10 +105,10 @@ function ProjetoRouanetCard({ project }) {
           </Tippy>
 
           <Typography
-            variant="body2"
+            variant="caption"
+            paragraph
             align="left"
             color="text.secondary"
-            gutterBottom
           >
             {projectCity} · {projectState}
           </Typography>
@@ -116,23 +126,35 @@ function ProjetoRouanetCard({ project }) {
           </Typography>
 
           <Box component="div" className={classes.boxRowView}>
-            <Typography align="left" gutterBottom>
+            <Typography
+              align="left"
+              variant="body2"
+              classes={classes.boxRowViewLabel}
+              gutterBottom
+            >
               Aprovado
             </Typography>
             <Typography
               align="left"
               gutterBottom
+              variant="body2"
               className={classes.currencyStyle}
             >
               {valueApproved}
             </Typography>
           </Box>
           <Box component="div" className={classes.boxRowView}>
-            <Typography align="left" gutterBottom>
+            <Typography
+              className={classes.boxRowViewLabel}
+              align="left"
+              variant="body2"
+              gutterBottom
+            >
               Captado
             </Typography>
             <Typography
               align="left"
+              variant="body2"
               gutterBottom
               className={classes.currencyStyle}
             >
@@ -143,10 +165,16 @@ function ProjetoRouanetCard({ project }) {
 
         <CardActions>
           <Button
-            size="large"
+            size="medium"
             fullWidth
             variant="contained"
-            style={{ cursor: 'not-allowed' }}
+            sx={{
+              '&.Mui-disabled': {
+                background: '#fafbfd',
+                color: '#c0c0c0',
+              },
+              cursor: 'not-allowed',
+            }}
             disabled
           >
             Adicionar
