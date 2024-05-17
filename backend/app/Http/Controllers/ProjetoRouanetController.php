@@ -7,6 +7,9 @@ use App\Services\ProjetoRouanetService;
 
 class ProjetoRouanetController extends Controller
 {
+
+    private ProjetoRouanetService $service;
+
     public function __construct(ProjetoRouanetService $service)
     {
         $this->service = $service;

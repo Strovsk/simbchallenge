@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
+
 use App\Models\ProjetoRouanet;
 
 class ProjetoRouanetService
@@ -10,6 +12,8 @@ class ProjetoRouanetService
     {
         $limit = 20;
         $offset = 0;
+        $result_message = '';
+        $status = 200;
 
         if ($page > 1) {
             $offset = ($page - 1) * $limit;
@@ -21,14 +25,15 @@ class ProjetoRouanetService
         $number_of_pages = ceil(ProjetoRouanet::count() / 20);
 
         if ($page > $number_of_pages) {
+            $status = 404;
             return [
                 'data' => [],
                 'number_of_pages' => $number_of_pages,
                 'message' => "Página não encontrada [pagina solicitada: $page]",
+                'status' => $status,
             ];
         }
 
-        $result_message = '';
 
         try {
             $query_result = ProjetoRouanet::limit($limit)->offset($offset)->get();
@@ -40,12 +45,14 @@ class ProjetoRouanetService
             );
             $result_message = 'Erro ao tentar acessar os dados no banco de dados';
             $query_result = [];
+            $status = 500;
         }
 
         return [
             'data' => $query_result,
             'number_of_pages' => $number_of_pages,
             'message' => $result_message,
+            'status' => $status,
         ];
     }
 }
