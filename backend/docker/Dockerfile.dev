@@ -51,25 +51,25 @@ RUN composer run post-create-project-cmd
 
 EXPOSE 8000
 
-# Add xdebug
-RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
-RUN apk add --update linux-headers
-RUN pecl install xdebug-3.1.5
-RUN docker-php-ext-enable xdebug
-RUN apk del -f .build-deps
+# Add xdebug - Remove for while to follow the tech case requirements
+# RUN apk add --no-cache --virtual .build-deps $PHPIZE_DEPS
+# RUN apk add --update linux-headers
+# RUN pecl install xdebug-3.1.5
+# RUN docker-php-ext-enable xdebug
+# RUN apk del -f .build-deps
 
-EXPOSE 9003
+# EXPOSE 9003
 
-# Configure Xdebug
+# # Configure Xdebug
 
-RUN mkdir -p /app/xdebug
-RUN touch /app/storage/logs/xdebug.log
+# RUN mkdir -p /app/xdebug
+# RUN touch /app/storage/logs/xdebug.log
 
-RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.log=/app/storage/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.discover_client_host=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.client_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini
+# RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#     && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#     && echo "xdebug.log=/app/storage/logs/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#     && echo "xdebug.discover_client_host=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+#     && echo "xdebug.client_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # CMD [ "tail", "-f", "/dev/null" ]
 CMD [ "php", "docker/DockerBootstrap.php" ]
