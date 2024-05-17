@@ -3,6 +3,7 @@ import { projetosRouanet } from './services/projetosRouanet';
 
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 import ProjetoRouanetSlider from './components/ProjetRouanetSlider';
 import background from './assets/background.svg';
@@ -53,6 +54,17 @@ function App() {
           </Typography>
         </div>
         <img src={background} alt="case técnico da Simbi" />
+        <div>
+          <Button
+            variant="text"
+            href="#projetos-rouanet"
+            size="large"
+            sx={{ mb: 5 }}
+            endIcon={<KeyboardDoubleArrowDownIcon />}
+          >
+            Ver Resultado
+          </Button>
+        </div>
       </section>
 
       <section
@@ -61,6 +73,7 @@ function App() {
           display: 'grid',
           placeItems: 'center',
         }}
+        id="projetos-rouanet"
       >
         <div style={{ background: '#fff', padding: 40, borderRadius: 10 }}>
           <Typography
