@@ -52,7 +52,7 @@ A API Simbi é uma API RESTful que fornece informações sobre projetos culturai
 ### Swagger
 
 O arquivo de documentação do Swagger está armazenado em `backend/storage/private/openapi_schema.yaml`.
-Para acessar a documentação da API, acesse o seguinte link: [http://localhost:8000/docs](http://localhost:8000/docs)
+Para acessar a documentação da API, acesse o seguinte link: [http://localhost:7800/docs](http://localhost:7800/docs)
 
 <h2 id="tests">Testes</h2>
 
