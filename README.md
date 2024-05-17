@@ -33,7 +33,7 @@ Além de uma API documentada em Swagger, a aplicação deve ter um frontend que 
 
 <h2 id="getting-started">Rodando o Projeto</h2>
 
-Para rodar o projeto, siga os 5 passos abaixo:
+Para rodar o projeto, siga os 4 passos abaixo:
 
 1. Clone o repositório:
 
@@ -47,14 +47,7 @@ Para rodar o projeto, siga os 5 passos abaixo:
     cd simbchallenge
 ```
 
-3. **(frontend)** Copie o arquivo `.env.example` para `.env.local`:
-
-```bash
-    # Não precisa configurar nada, o arquivo já está pronto para uso
-    cp frontend/.env.example frontend/.env
-```
-
-4. Acesse a pasta do docker:
+3. Acesse a pasta do docker:
 
 ```bash
     cd simbchallenge/docker
@@ -62,7 +55,7 @@ Para rodar o projeto, siga os 5 passos abaixo:
 
 > O projeto foi containerizado com Docker, portanto, é necessário ter alguma engine de containerização ou, caso não tenha, é recomendável instalar o [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-5. Em seguida, basta executar o comando abaixo para subir o ambiente (esteja certo de estar na raiz do projeto):
+4. Em seguida, basta executar o comando abaixo para subir o ambiente (esteja certo de estar na raiz do projeto):
 
 ```bash
     docker-compose up -d
