@@ -103,13 +103,14 @@ O backend foi desenvolvido em Laravel 9.x, utilizando o Eloquent ORM para a mani
 
 <h2 id="api-endpoints">API Endpoints</h2>
 
-Há somente uma rota disponível na API, que é a rota de listagem de todos os registros da tabela `tb_projeto_rouanet_teste`. A rota é a seguinte:
+Das rotas que mais importam para a API, são:
 
 ```bash
 # GET /api/projects
-curl -X GET http://localhost:7800/api/projects
+curl -X GET [http://localhost:7800/api/projetos-rouanet](http://localhost:7800/api/projetos-rouanet)
+curl -X GET [http://localhost:7800/docs](http://localhost:7800/docs)
 ```
-
 Se nenhum parâmetro for passado, a rota considerará o valor padrão da página como 1 e a quantidade de registros por página como 20.
 
-Há uma documentação feita em Swagger para facilitar a visualização e o entendimento da API. Para acessar a documentação, basta acessar a rota `/api/documentation` do backend.
+Hidrate-se! 💧
+Ajude o RS! 🆘❤️
