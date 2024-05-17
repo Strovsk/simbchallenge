@@ -5,7 +5,8 @@ export async function projetosRouanet() {
 
   try {
     const response = await fetch(url);
-    const data = await response.json();
+    const response_result = await response.json();
+    const data = response_result.data;
     return data;
   } catch (error) {
     console.error('Erro ao buscar projetos da Lei Rouanet', error);
