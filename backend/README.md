@@ -13,6 +13,7 @@
 -   [MSC - Model -> Service -> Controller](#msc)
 -   [Docker](#docker)
 -   [Api Simbi](#api-simbi)
+-   [Testes](#tests)
 
 <h2 id="migrations">Migrações</h2>
 
@@ -47,3 +48,21 @@ A API Simbi é uma API RESTful que fornece informações sobre projetos culturai
 -   **[GET]** /api/projetos-rouanet
 
     O endpoint que foi solicitado no CASE
+
+<h2 id="tests">Testes</h2>
+
+Os testes são feitos com PHPUnit. Para rodar os testes, execute o seguinte comando:
+
+```bash
+docker exec -it backend bash
+
+# Se tudo funcionou corretamente, você verá algo parecido com isso:
+[simbi-tech-case]  dev@back 🐇  ( /app ) >_
+
+# caso esteja acessando através da EXEC do docker Desktop, digite:
+bash
+
+# Agora, rode o comando para rodar os testes
+php artisan test
+
+```
